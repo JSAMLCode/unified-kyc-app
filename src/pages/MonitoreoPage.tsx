@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Clock, AlertTriangle, ShieldAlert, CheckCircle, ChevronRight, Filter } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const MOCK_ALERTAS = [
     {
@@ -53,7 +54,38 @@ const getSlaColor = (status: string) => {
 };
 
 const MonitoreoPage: React.FC = () => {
-    const [alertas] = useState(MOCK_ALERTAS);
+    const [alertas, setAlertas] = useState<any[]>(MOCK_ALERTAS);
+
+    useEffect(() => {
+        const fetchAlertas = async () => {
+            try {
+                // Fetch from the SLA View we created in Supabase
+                const { data, error } = await supabase
+                    .from('vw_alertas_dashboard')
+                    .select('*');
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    const mappedData = data.map(a => ({
+                        id: `ALT-${a.id.substring(0, 4).toUpperCase()}`,
+                        cliente_nombre: a.cliente_nombre || 'Cliente Desconocido',
+                        descripcion: a.descripcion || 'Sin descripción',
+                        estado: a.estado,
+                        nivel_riesgo_cliente: a.nivel_riesgo_cliente,
+                        eslabon_actual: a.eslabon_actual,
+                        dias_transcurridos: a.dias_transcurridos || 0,
+                        sla_status: (a.dias_transcurridos || 0) > 60 ? 'breached' : (a.dias_transcurridos || 0) > 30 ? 'warning' : 'ok'
+                    }));
+                    setAlertas(mappedData);
+                }
+            } catch (error) {
+                console.error('Error fetching alertas SLA:', error);
+            }
+        };
+
+        fetchAlertas();
+    }, []);
 
     return (
         <div className="p-8 max-w-[1600px] mx-auto space-y-8 animate-fade-in pb-12">

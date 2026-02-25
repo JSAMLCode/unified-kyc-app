@@ -63,9 +63,9 @@ export const ExpedienteBandeja: React.FC = () => {
     const filtered = clients.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
     return (
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 animate-fade-in pb-12">
+        <div className="flex flex-col xl:flex-row gap-6 animate-fade-in pb-12 w-full">
 
-            <div className={`xl:col-span-${selected ? '2' : '3'} space-y-6 transition-all`}>
+            <div className={`${selected ? 'xl:w-2/3' : 'w-full'} space-y-6 transition-all duration-300`}>
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div className="p-6 border-b border-slate-100 bg-slate-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
@@ -158,7 +158,7 @@ export const ExpedienteBandeja: React.FC = () => {
 
             {/* Audit Panel (Right Sidebar) */}
             {selected && (
-                <div className="xl:col-span-1 border border-slate-200 bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in flex flex-col h-[600px]">
+                <div className="xl:w-1/3 border border-slate-200 bg-white rounded-2xl shadow-floating overflow-hidden animate-fade-in flex flex-col h-[600px] shrink-0">
                     <div className="p-6 border-b border-slate-100 bg-slate-800 text-white flex items-center gap-4">
                         <div className="w-10 h-10 bg-brand-primary/20 rounded-lg flex items-center justify-center border border-brand-primary/30">
                             <ShieldCheck className="w-5 h-5 text-brand-primary" />

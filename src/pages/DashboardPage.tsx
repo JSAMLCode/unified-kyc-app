@@ -23,28 +23,48 @@ const RISK_DATA = [
 
 const DashboardPage: React.FC = () => {
     const [isProcessing, setIsProcessing] = useState(false);
+    const [procesoLog, setProcesoLog] = useState<string | null>(null);
 
     const handleProcess = () => {
         setIsProcessing(true);
-        setTimeout(() => setIsProcessing(false), 2000);
+        setProcesoLog("Iniciando escaneo batch contra motores (OFAC/ONU)...");
+
+        setTimeout(() => {
+            setProcesoLog("Calculando percentiles estadísticos de transacciones vs segmentos...");
+        }, 2000);
+
+        setTimeout(() => {
+            setIsProcessing(false);
+            setProcesoLog(null);
+        }, 5000);
     };
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
             {/* Header */}
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
+                <div className="flex-1">
                     <h1 className="text-3xl font-bold text-brand-secondary">Panel de Control de Riesgo</h1>
                     <p className="text-slate-500 mt-1">Monitoreo de cartera y alertas tempranas AML/FT</p>
                 </div>
-                <button
-                    onClick={handleProcess}
-                    disabled={isProcessing}
-                    className="bg-brand-primary text-white px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 hover:bg-orange-600 transition shadow-lg shadow-indigo-200 disabled:opacity-75"
-                >
-                    <RefreshCw size={20} className={isProcessing ? "animate-spin" : ""} />
-                    {isProcessing ? "Procesando Engine..." : "Procesar Cartera"}
-                </button>
+                <div className="flex flex-col items-end gap-2 relative">
+                    <button
+                        onClick={handleProcess}
+                        disabled={isProcessing}
+                        className="bg-brand-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 hover:bg-orange-600 transition-all shadow-lg shadow-brand-primary/20 disabled:bg-slate-300 disabled:shadow-none min-w-[200px] justify-center"
+                    >
+                        <RefreshCw size={20} className={isProcessing ? "animate-spin" : ""} />
+                        {isProcessing ? "Ejecutando Motores..." : "Procesar Cartera"}
+                    </button>
+                    {procesoLog && (
+                        <div className="absolute top-14 right-0 w-[320px] bg-slate-800 text-white text-xs font-medium p-3 rounded-xl shadow-floating animate-fade-in border border-slate-700 z-50">
+                            <span className="flex items-center gap-2">
+                                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                                {procesoLog}
+                            </span>
+                        </div>
+                    )}
+                </div>
             </header>
 
             {/* KPIs */}
