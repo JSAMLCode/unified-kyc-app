@@ -34,13 +34,13 @@ const DashboardPage: React.FC = () => {
             {/* Header */}
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-800">Panel de Control de Riesgo</h1>
+                    <h1 className="text-3xl font-bold text-brand-secondary">Panel de Control de Riesgo</h1>
                     <p className="text-slate-500 mt-1">Monitoreo de cartera y alertas tempranas AML/FT</p>
                 </div>
                 <button
                     onClick={handleProcess}
                     disabled={isProcessing}
-                    className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:opacity-75"
+                    className="bg-brand-primary text-white px-6 py-3 rounded-2xl font-semibold flex items-center gap-2 hover:bg-orange-600 transition shadow-lg shadow-indigo-200 disabled:opacity-75"
                 >
                     <RefreshCw size={20} className={isProcessing ? "animate-spin" : ""} />
                     {isProcessing ? "Procesando Engine..." : "Procesar Cartera"}
@@ -49,7 +49,7 @@ const DashboardPage: React.FC = () => {
 
             {/* KPIs */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <KpiCard label="Clientes Evaluados" value={MOCK_STATS.total} icon={<Users size={32} />} color="border-indigo-500" textColor="text-indigo-600" />
+                <KpiCard label="Clientes Evaluados" value={MOCK_STATS.total} icon={<Users size={32} />} color="border-indigo-500" textColor="text-brand-primary" />
                 <KpiCard label="Riesgo Bajo" value={MOCK_STATS.low} icon={<Shield size={32} />} color="border-emerald-500" textColor="text-emerald-600" />
                 <KpiCard label="Riesgo Medio" value={MOCK_STATS.medium} icon={<AlertTriangle size={32} />} color="border-amber-500" textColor="text-amber-600" />
                 <KpiCard label="Riesgo Alto" value={MOCK_STATS.high} icon={<Radiation size={32} />} color="border-red-500" textColor="text-red-600" />
@@ -59,7 +59,7 @@ const DashboardPage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Doughnut Chart */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-brand-secondary mb-6 flex items-center gap-2">
                         <PieChart className="text-slate-400" size={20} />
                         Distribución de la Cartera
                     </h3>
@@ -89,21 +89,21 @@ const DashboardPage: React.FC = () => {
                         {/* Center Text */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-[-36px]">
                             <span className="text-sm font-semibold text-slate-400 uppercase tracking-widest">Total</span>
-                            <span className="text-2xl font-black text-slate-800">12.4k</span>
+                            <span className="text-2xl font-black text-brand-secondary">12.4k</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Jurisdiction Map (Progress Bars) */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-                    <h3 className="text-lg font-bold text-slate-800 mb-8 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-brand-secondary mb-8 flex items-center gap-2">
                         <Globe className="text-slate-400" size={20} />
                         Mapa de Calor: Jurisdicción
                     </h3>
                     <div className="flex-1 flex flex-col justify-center space-y-8">
                         <div>
                             <div className="flex justify-between font-semibold mb-2">
-                                <span className="flex items-center gap-2 text-slate-700">
+                                <span className="flex items-center gap-2 text-text-main">
                                     <MapPin size={18} className="text-emerald-500" />
                                     Panamá (Local)
                                 </span>
@@ -116,7 +116,7 @@ const DashboardPage: React.FC = () => {
 
                         <div>
                             <div className="flex justify-between font-semibold mb-2">
-                                <span className="flex items-center gap-2 text-slate-700">
+                                <span className="flex items-center gap-2 text-text-main">
                                     <Plane size={18} className="text-amber-500" />
                                     Extranjero
                                 </span>
@@ -132,9 +132,9 @@ const DashboardPage: React.FC = () => {
 
             {/* Alerts Section */}
             <div>
-                <h3 className="text-xl font-bold text-slate-800 mt-4 mb-6">Alertas Críticas</h3>
+                <h3 className="text-xl font-bold text-brand-secondary mt-4 mb-6">Alertas Críticas</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-xl flex items-center gap-6 shadow-sm">
+                    <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-2xl flex items-center gap-6 shadow-sm">
                         <div className="w-16 h-16 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center flex-shrink-0">
                             <Bell size={32} />
                         </div>
@@ -144,7 +144,7 @@ const DashboardPage: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-xl flex items-center gap-6 shadow-sm">
+                    <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-2xl flex items-center gap-6 shadow-sm">
                         <div className="w-16 h-16 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center flex-shrink-0">
                             <UserX size={32} />
                         </div>
@@ -165,7 +165,7 @@ const KpiCard = ({ label, value, icon, color, textColor }: { label: string, valu
             <span className="text-sm font-bold text-slate-500 uppercase tracking-wider">{label}</span>
             <span className={`text-4xl font-black ${textColor}`}>{value.toLocaleString()}</span>
         </div>
-        <div className="absolute top-6 right-6 opacity-10 text-slate-800 group-hover:scale-110 transition-transform duration-500">
+        <div className="absolute top-6 right-6 opacity-10 text-brand-secondary group-hover:scale-110 transition-transform duration-500">
             {icon}
         </div>
     </div>

@@ -3,11 +3,11 @@ import { Upload, CheckCircle, User, Briefcase, FileText, Lock, ChevronRight } fr
 
 const SectionHeader = ({ icon: Icon, step, title, subtitle }: { icon: any, step: string, title: string, subtitle: string }) => (
     <div className="flex items-center gap-4 pb-4 mb-6 border-b border-slate-200">
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black text-white shrink-0 bg-indigo-600 shadow-lg shadow-indigo-600/20">{step}</div>
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black text-white shrink-0 bg-brand-primary shadow-lg shadow-soft">{step}</div>
         <div className="flex items-center gap-2 flex-1">
-            <Icon className="w-5 h-5 text-indigo-600" />
+            <Icon className="w-5 h-5 text-brand-primary" />
             <div>
-                <p className="font-bold text-sm text-slate-800 leading-none">{title}</p>
+                <p className="font-bold text-sm text-brand-secondary leading-none">{title}</p>
                 <p className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">{subtitle}</p>
             </div>
         </div>
@@ -17,11 +17,11 @@ const SectionHeader = ({ icon: Icon, step, title, subtitle }: { icon: any, step:
 const InputField = ({ label, id, type = 'text', placeholder, required, prefix }: any) => (
     <div className="space-y-1.5">
         <label htmlFor={id} className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">{label}</label>
-        <div className="flex items-center border border-slate-200 rounded-xl bg-slate-50 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all">
+        <div className="flex items-center border border-slate-200 rounded-2xl bg-slate-50 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all">
             {prefix && <span className="px-4 text-sm font-bold border-r border-slate-200 text-slate-500">{prefix}</span>}
             <input
                 id={id} name={id} type={type} placeholder={placeholder} required={required}
-                className="flex-1 px-4 py-3 text-sm bg-transparent outline-none text-slate-800 placeholder:text-slate-400"
+                className="flex-1 px-4 py-3 text-sm bg-transparent outline-none text-brand-secondary placeholder:text-slate-400"
             />
         </div>
     </div>
@@ -59,10 +59,10 @@ export const ExpedienteForm: React.FC = () => {
                     <CheckCircle className="w-12 h-12 text-emerald-500" />
                 </div>
                 <div className="space-y-2">
-                    <h2 className="text-3xl font-black text-slate-800 tracking-tight">¡Expediente Recibido!</h2>
+                    <h2 className="text-3xl font-black text-brand-secondary tracking-tight">¡Expediente Recibido!</h2>
                     <p className="text-slate-500 max-w-md mx-auto">Su expediente ha sido ingresado al núcleo de cumplimiento. El Oficial asignado revisará la documentación en breve.</p>
                 </div>
-                <button onClick={() => setSubmitted(false)} className="px-8 py-3 bg-indigo-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all">
+                <button onClick={() => setSubmitted(false)} className="px-8 py-3 bg-brand-primary text-white font-bold text-sm rounded-2xl shadow-lg shadow-soft hover:bg-orange-600 transition-all">
                     ACTUALIZAR OTRO EXPEDIENTE
                 </button>
             </div>
@@ -73,10 +73,10 @@ export const ExpedienteForm: React.FC = () => {
         <div className="max-w-3xl mx-auto space-y-8 animate-fade-in pb-12">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Portal de Remediación / Onboarding</h2>
+                    <h2 className="text-2xl font-bold text-brand-secondary tracking-tight">Portal de Remediación / Onboarding</h2>
                     <p className="text-slate-500 text-sm">Actualización de Expedientes KYC para ASRIEL S.A.</p>
                 </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-xl text-white shadow-md">
+                <div className="flex items-center gap-2 px-4 py-2 bg-slate-800 rounded-2xl text-white shadow-md">
                     <Lock className="w-4 h-4 text-emerald-400" />
                     <span className="text-[10px] font-bold uppercase tracking-[0.1em]">Conexión Encriptada TLS 1.3</span>
                 </div>
@@ -114,7 +114,7 @@ export const ExpedienteForm: React.FC = () => {
                         <SectionHeader icon={FileText} step="3" title="Declaración Juratoria PEP" subtitle="PERSONA EXPUESTA POLÍTICAMENTE" />
                         <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl space-y-5">
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                En cumplimiento con la <span className="font-bold text-slate-800">Ley 23 de 2015</span>, declare si usted o algún beneficiario final ha ocupado cargos públicos de alto nivel o mantiene vínculos con personas en dichas posiciones.
+                                En cumplimiento con la <span className="font-bold text-brand-secondary">Ley 23 de 2015</span>, declare si usted o algún beneficiario final ha ocupado cargos públicos de alto nivel o mantiene vínculos con personas en dichas posiciones.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 {['no', 'si'].map(val => (
@@ -122,7 +122,7 @@ export const ExpedienteForm: React.FC = () => {
                                         key={val}
                                         type="button"
                                         onClick={() => setPep(val)}
-                                        className={`flex-1 py-4 rounded-xl border-2 font-bold text-xs transition-all flex items-center justify-center gap-3 ${pep === val
+                                        className={`flex-1 py-4 rounded-2xl border-2 font-bold text-xs transition-all flex items-center justify-center gap-3 ${pep === val
                                             ? 'bg-slate-800 border-slate-800 text-white shadow-md'
                                             : 'border-slate-200 text-slate-500 hover:border-slate-300 bg-white'
                                             }`}
@@ -146,7 +146,7 @@ export const ExpedienteForm: React.FC = () => {
                             onDrop={handleDrop}
                             onClick={() => inputRef.current?.click()}
                             className={`group border-2 border-dashed rounded-3xl p-10 text-center transition-all cursor-pointer relative ${dragActive
-                                ? 'border-indigo-500 bg-indigo-50'
+                                ? 'border-indigo-500 bg-orange-50/50'
                                 : 'border-slate-200 hover:border-indigo-400 bg-slate-50'
                                 }`}
                         >
@@ -158,9 +158,9 @@ export const ExpedienteForm: React.FC = () => {
 
                             <div className="relative z-10">
                                 <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
-                                    <Upload className={`w-8 h-8 ${dragActive ? 'text-indigo-600' : 'text-slate-400'}`} />
+                                    <Upload className={`w-8 h-8 ${dragActive ? 'text-brand-primary' : 'text-slate-400'}`} />
                                 </div>
-                                <h4 className="text-sm font-bold text-slate-800">Cargar Expediente Digital</h4>
+                                <h4 className="text-sm font-bold text-brand-secondary">Cargar Expediente Digital</h4>
                                 <p className="text-xs text-slate-500 mt-1">Arrastre archivos o haga clic para explorar</p>
                             </div>
 
@@ -178,7 +178,7 @@ export const ExpedienteForm: React.FC = () => {
                     </div>
 
                     <div className="pt-8">
-                        <button type="submit" disabled={submitting} className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-3 transition-all">
+                        <button type="submit" disabled={submitting} className="w-full bg-brand-primary hover:bg-orange-600 disabled:opacity-50 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-3 transition-all">
                             {submitting ? (
                                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                             ) : (

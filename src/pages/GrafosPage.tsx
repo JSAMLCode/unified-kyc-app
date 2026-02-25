@@ -26,8 +26,8 @@ const GrafosPage: React.FC = () => {
         <div className="p-8 max-w-[1600px] mx-auto space-y-6 animate-fade-in pb-10">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
                 <div>
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Brain className="text-indigo-600" size={32} />
+                    <h2 className="text-3xl font-bold text-brand-secondary flex items-center gap-3">
+                        <Brain className="text-brand-primary" size={32} />
                         Nexus AI & Graph
                     </h2>
                     <p className="text-slate-500 mt-1">Inteligencia Generativa aplicada a la detección de delitos financieros mediante grafos direccionales.</p>
@@ -37,19 +37,19 @@ const GrafosPage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[700px]">
                 {/* Chat Interface */}
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col overflow-hidden">
-                    <div className="p-4 bg-indigo-50 border-b border-indigo-100 flex justify-between items-center">
-                        <span className="text-sm font-bold text-indigo-900">Asistente Virtual Nexus</span>
+                    <div className="p-4 bg-orange-50/50 border-b border-indigo-100 flex justify-between items-center">
+                        <span className="text-sm font-bold text-brand-secondary">Asistente Virtual Nexus</span>
                         <div className="flex gap-2 items-center">
                             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                            <span className="text-[10px] text-indigo-700 font-bold uppercase tracking-widest">En Línea</span>
+                            <span className="text-[10px] text-brand-primary font-bold uppercase tracking-widest">En Línea</span>
                         </div>
                     </div>
                     <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50">
                         {messages.map((m, i) => (
                             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                 <div className={`max-w-[85%] p-3 text-sm ${m.role === 'user'
-                                    ? 'bg-indigo-600 text-white rounded-2xl rounded-br-sm shadow-md'
-                                    : 'bg-white text-slate-700 border border-slate-200 shadow-sm rounded-2xl rounded-bl-sm'
+                                    ? 'bg-brand-primary text-white rounded-2xl rounded-br-sm shadow-md'
+                                    : 'bg-white text-text-main border border-slate-200 shadow-sm rounded-2xl rounded-bl-sm'
                                     }`}>
                                     {m.content}
                                 </div>
@@ -72,9 +72,9 @@ const GrafosPage: React.FC = () => {
                                 onChange={(e) => setQuery(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                                 placeholder="Consultar a Nexus sobre relaciones..."
-                                className="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+                                className="flex-1 bg-slate-100 border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
                             />
-                            <button onClick={handleSend} className="bg-indigo-600 text-white p-3 rounded-xl shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all flex items-center justify-center">
+                            <button onClick={handleSend} className="bg-brand-primary text-white p-3 rounded-2xl shadow-lg shadow-soft hover:bg-orange-600 transition-all flex items-center justify-center">
                                 <ChevronRight size={20} />
                             </button>
                         </div>
@@ -107,7 +107,7 @@ const GrafosPage: React.FC = () => {
                         </svg>
 
                         {/* Nodes */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-indigo-600 rounded-full border-4 border-indigo-400/50 shadow-[0_0_40px_rgba(79,70,229,0.7)] flex items-center justify-center z-10 text-white font-bold text-xs text-center leading-tight cursor-pointer hover:scale-110 transition-transform">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-brand-primary rounded-full border-4 border-indigo-400/50 shadow-[0_0_40px_rgba(79,70,229,0.7)] flex items-center justify-center z-10 text-white font-bold text-xs text-center leading-tight cursor-pointer hover:scale-110 transition-transform">
                             Target<br />Entity
                             <div className="absolute -bottom-6 whitespace-nowrap text-[10px] text-indigo-300 font-medium">Inversiones del Norte S.A.</div>
                         </div>
@@ -142,7 +142,7 @@ const GrafosPage: React.FC = () => {
                         <div className="flex flex-col sm:flex-row justify-between items-center text-slate-400 text-xs gap-4">
                             <span className="font-medium bg-slate-800 px-3 py-1 rounded-lg">Profundidad de análisis: <strong className="text-white">3 niveles</strong></span>
                             <div className="flex gap-4">
-                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 bg-indigo-500 rounded-full shadow-[0_0_10px_#6366f1]"></div> Cliente</span>
+                                <span className="flex items-center gap-1.5"><div className="w-2 h-2 bg-brand-primary rounded-full shadow-[0_0_10px_#6366f1]"></div> Cliente</span>
                                 <span className="flex items-center gap-1.5"><div className="w-2 h-2 bg-slate-500 rounded-full shadow-[0_0_10px_#64748b]"></div> Intermediario</span>
                                 <span className="flex items-center gap-1.5"><div className="w-2 h-2 bg-red-500 rounded-full shadow-[0_0_10px_#ef4444] animate-pulse"></div> Riesgo Hit</span>
                             </div>

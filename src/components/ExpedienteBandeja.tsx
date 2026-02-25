@@ -204,7 +204,7 @@ export const ExpedienteBandeja: React.FC = () => {
                                 <button
                                     onClick={runScreening}
                                     disabled={isScreening}
-                                    className="w-full py-2 bg-brand-primary hover:bg-indigo-700 disabled:bg-indigo-400 text-white text-xs font-bold rounded-lg transition-colors flex justify-center items-center h-9"
+                                    className="w-full py-2 bg-brand-primary hover:bg-orange-600 disabled:bg-indigo-400 text-white text-xs font-bold rounded-lg transition-colors flex justify-center items-center h-9"
                                 >
                                     {isScreening ? (
                                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

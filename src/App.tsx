@@ -13,7 +13,7 @@ const App: React.FC = () => {
         {/* Sidebar Navigation - Nave Nodriza */}
         <nav className="w-full md:w-64 bg-slate-900 text-slate-300 p-6 flex flex-col gap-8 shadow-2xl z-20 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/20">
+            <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-soft">
               AS
             </div>
             <span className="text-xl font-bold text-white tracking-tight">AML Suite</span>
@@ -42,14 +42,14 @@ const App: React.FC = () => {
         <main className="flex-1 overflow-y-auto w-full">
           {/* Top Header */}
           <header className="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-10 w-full">
-            <h2 className="text-lg font-semibold text-slate-700 capitalize">
+            <h2 className="text-lg font-semibold text-text-main capitalize">
               Plataforma KYC/AML
             </h2>
             <div className="flex items-center gap-4">
               <button className="p-2 text-slate-400 hover:text-slate-600 transition"><Bell size={20} /></button>
               <div className="w-px h-6 bg-slate-200"></div>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-xs">UAF</div>
+                <div className="w-8 h-8 bg-indigo-100 text-brand-primary rounded-full flex items-center justify-center font-bold text-xs">UAF</div>
                 <span className="text-sm font-medium text-slate-600 hidden sm:inline">Oficial de Cumplimiento</span>
               </div>
             </div>
@@ -74,12 +74,12 @@ const NavItem = ({ to, icon, label }: { to: string, icon: React.ReactNode, label
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group ${isActive ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'hover:bg-slate-800 text-slate-400 hover:text-white'}`
+      `flex items-center gap-3 p-3 rounded-2xl transition-all duration-200 group ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-soft' : 'hover:bg-slate-800 text-slate-400 hover:text-white'}`
     }
   >
     {({ isActive }) => (
       <>
-        <span className={`${isActive ? 'text-white' : 'group-hover:text-indigo-400'} transition-colors`}>{icon}</span>
+        <span className={`${isActive ? 'text-white' : 'group-hover:text-brand-primary'} transition-colors`}>{icon}</span>
         <span className="font-medium">{label}</span>
       </>
     )}

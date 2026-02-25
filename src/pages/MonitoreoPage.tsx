@@ -45,10 +45,10 @@ const COLUMNAS = [
 
 const getSlaColor = (status: string) => {
     switch (status) {
-        case 'ok': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-        case 'warning': return 'bg-amber-100 text-amber-700 border-amber-200';
-        case 'breached': return 'bg-red-100 text-red-700 border-red-200 animate-pulse';
-        default: return 'bg-slate-100 text-slate-700';
+        case 'ok': return 'bg-risk-low/10 text-risk-low border border-risk-low/20 border-emerald-200';
+        case 'warning': return 'bg-risk-medium/10 text-risk-medium border border-risk-medium/20 border-amber-200';
+        case 'breached': return 'bg-risk-high/10 text-risk-high border border-risk-high/20 border-red-200 animate-pulse';
+        default: return 'bg-slate-100 text-text-main';
     }
 };
 
@@ -60,14 +60,14 @@ const MonitoreoPage: React.FC = () => {
             {/* Header */}
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-800">Centro de Monitoreo SLA</h1>
+                    <h1 className="text-3xl font-bold text-brand-secondary">Centro de Monitoreo SLA</h1>
                     <p className="text-slate-500 mt-1">Gestión de Alertas Inusuales y Tiempos de Respuesta (Ley 23)</p>
                 </div>
                 <div className="flex gap-2">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-600 shadow-sm hover:bg-slate-50 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-slate-600 shadow-sm hover:bg-slate-50 transition-colors">
                         <Filter size={16} /> Filtros
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-bold shadow-sm shadow-indigo-600/20 hover:bg-indigo-700 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-2xl text-sm font-bold shadow-sm shadow-soft hover:bg-orange-600 transition-colors">
                         Generar Reporte ROS
                     </button>
                 </div>
@@ -86,7 +86,7 @@ const MonitoreoPage: React.FC = () => {
                 {COLUMNAS.map(col => (
                     <div key={col.id} className="flex-1 min-w-[320px] max-w-[450px] bg-slate-50 rounded-2xl border border-slate-200 p-4 flex flex-col gap-4">
                         <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-                            <h3 className="font-bold text-slate-700 flex items-center gap-2">
+                            <h3 className="font-bold text-text-main flex items-center gap-2">
                                 {col.icon} {col.title}
                             </h3>
                             <span className="bg-white px-2 py-0.5 rounded-full text-xs font-bold text-slate-500 border border-slate-200 shadow-sm">
@@ -111,7 +111,7 @@ const MonitoreoPage: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <h4 className="font-bold text-slate-800 text-sm leading-snug mb-2 group-hover:text-indigo-600 transition-colors">
+                                    <h4 className="font-bold text-brand-secondary text-sm leading-snug mb-2 group-hover:text-brand-primary transition-colors">
                                         {alerta.cliente_nombre}
                                     </h4>
                                     <p className="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">
@@ -121,9 +121,9 @@ const MonitoreoPage: React.FC = () => {
                                     <div className="flex items-center justify-between pt-3 border-t border-slate-100">
                                         <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                                             <span>Trámite:</span>
-                                            <span className="text-indigo-600">{alerta.eslabon_actual}</span>
+                                            <span className="text-brand-primary">{alerta.eslabon_actual}</span>
                                         </div>
-                                        <ChevronRight size={16} className="text-slate-300 group-hover:text-indigo-500 transition-transform group-hover:translate-x-1" />
+                                        <ChevronRight size={16} className="text-slate-300 group-hover:text-brand-primary transition-transform group-hover:translate-x-1" />
                                     </div>
                                 </div>
                             ))}
@@ -142,7 +142,7 @@ const MonitoreoPage: React.FC = () => {
 
 const MetricCard = ({ title, value, icon, color = 'slate' }: any) => {
     const colorClasses = {
-        slate: 'bg-white border-slate-200 text-slate-800',
+        slate: 'bg-white border-slate-200 text-brand-secondary',
         emerald: 'bg-emerald-50 border-emerald-100 text-emerald-800',
         amber: 'bg-amber-50 border-amber-100 text-amber-800',
         red: 'bg-red-50 border-red-100 text-red-800'
@@ -150,7 +150,7 @@ const MetricCard = ({ title, value, icon, color = 'slate' }: any) => {
 
     return (
         <div className={`p-6 rounded-2xl border shadow-sm flex items-center gap-4 ${(colorClasses as any)[color]}`}>
-            <div className="p-3 bg-white/60 rounded-xl backdrop-blur-sm border border-black/5 shadow-sm">
+            <div className="p-3 bg-white/60 rounded-2xl backdrop-blur-sm border border-black/5 shadow-sm">
                 {icon}
             </div>
             <div>

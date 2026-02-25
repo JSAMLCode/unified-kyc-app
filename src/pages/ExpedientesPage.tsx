@@ -12,7 +12,7 @@ const ExpedientesPage: React.FC = () => {
             {/* Header */}
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-slate-800">Centro de Expedientes</h1>
+                    <h1 className="text-3xl font-bold text-brand-secondary">Centro de Expedientes</h1>
                     <p className="text-slate-500 mt-1">Gestión de Onboarding y Monitoreo Continuo</p>
                 </div>
             </header>
@@ -53,8 +53,8 @@ const TabButton = ({ active, onClick, icon, label }: any) => (
     <button
         onClick={onClick}
         className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-t-xl transition-all ${active
-            ? 'bg-white text-indigo-600 border-t border-l border-r border-slate-200 translate-y-px'
-            : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50 border-t border-l border-r border-transparent'
+            ? 'bg-white text-brand-primary border-t border-l border-r border-slate-200 translate-y-px'
+            : 'text-slate-500 hover:text-brand-secondary hover:bg-slate-50 border-t border-l border-r border-transparent'
             }`}
     >
         {icon}
