@@ -7,7 +7,6 @@ export const ExpedienteBandeja: React.FC = () => {
     const [selected, setSelected] = useState<any>(null);
     const [clients, setClients] = useState<any[]>([]);
     const [isScreening, setIsScreening] = useState(false);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchClients = async () => {
@@ -33,8 +32,6 @@ export const ExpedienteBandeja: React.FC = () => {
                 setClients(mappedData);
             } catch (error) {
                 console.error("Error fetching clients:", error);
-            } finally {
-                setLoading(false);
             }
         };
 
