@@ -1,17 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, MoreHorizontal, ShieldCheck, Check, Globe } from 'lucide-react';
-
-// MOCK DATA
-const MOCK_CLIENTS = [
-    { id: 1, displayId: 'EXP-10023', name: 'Corporación Horizonte S.A.', risk: 'BAJO', score: '1.20', status: 'COMPLETADO' },
-    { id: 2, displayId: 'EXP-10024', name: 'Inversiones Púrpura LLC', risk: 'ALTO', score: '4.10', status: 'PENDIENTE' },
-    { id: 3, displayId: 'EXP-10025', name: 'Miguel Mosquera', risk: 'MEDIO', score: '2.50', status: 'PENDIENTE' }
-];
+import { supabase } from '../lib/supabase';
 
 export const ExpedienteBandeja: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selected, setSelected] = useState<any>(null);
+    const [clients, setClients] = useState<any[]>([]);
     const [isScreening, setIsScreening] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchClients = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('clientes')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                // Map the DB data to match the UI expectations (for now we simulate some states based on the score)
+                const mappedData = data?.map(c => ({
+                    id: c.id,
+                    displayId: `EXP-${c.id.substring(0, 6).toUpperCase()}`,
+                    name: c.nombre,
+                    risk: c.score_medios_adversos > 50 ? 'ALTO' : c.score_medios_adversos > 15 ? 'MEDIO' : 'BAJO',
+                    score: c.score_medios_adversos.toFixed(2),
+                    status: 'PENDIENTE',
+                    raw: c
+                })) || [];
+
+                setClients(mappedData);
+            } catch (error) {
+                console.error("Error fetching clients:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchClients();
+    }, []);
 
     const runScreening = async () => {
         if (!selected) return;
@@ -35,7 +63,7 @@ export const ExpedienteBandeja: React.FC = () => {
         }
     };
 
-    const filtered = MOCK_CLIENTS.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const filtered = clients.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
     return (
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 animate-fade-in pb-12">

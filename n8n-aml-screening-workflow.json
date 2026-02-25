@@ -1,0 +1,80 @@
+{
+  "name": "AML Screening Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "aml-screening",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "8e1f5898-095a-4b95-bdc2-613d5a4982a7",
+      "name": "AML Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        340,
+        300
+      ],
+      "webhookId": "9d6b71f9-86f3-4d45-98ea-a30fa140dc1b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"status\": \"success\",\n  \"clientId\": \"{{ $json.body.clientId }}\",\n  \"message\": \"Escaneo de AML iniciado para {{ $json.body.clientName }}\"\n}",
+        "options": {}
+      },
+      "id": "e44c2da0-6a2c-47bc-8a48-a0afc0b89329",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a972c8ea-c7ec-4458-9be5-ff99c750bafc",
+      "name": "Simulate OFAC Search",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AML Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Simulate OFAC Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f03a6db6-43b6-455b-b9d5-4dc216f9f36f"
+}
