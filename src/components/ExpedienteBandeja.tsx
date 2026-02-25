@@ -69,7 +69,7 @@ export const ExpedienteBandeja: React.FC = () => {
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div className="p-6 border-b border-slate-100 bg-slate-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
-                            <h2 className="text-xl font-bold text-slate-800 tracking-tight">Bandeja de Cumplimiento</h2>
+                            <h2 className="text-xl font-bold text-brand-secondary tracking-tight">Bandeja de Cumplimiento</h2>
                             <p className="text-xs text-slate-500 font-medium mt-1">Expedientes bajo monitoreo activo</p>
                         </div>
                         <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -80,10 +80,10 @@ export const ExpedienteBandeja: React.FC = () => {
                                     placeholder="Buscar cliente..."
                                     value={searchQuery}
                                     onChange={e => setSearchQuery(e.target.value)}
-                                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-xl outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+                                    className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-2xl outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
                                 />
                             </div>
-                            <button className="text-indigo-600 bg-indigo-50 hover:bg-indigo-100 p-2 rounded-xl transition-colors">
+                            <button className="text-brand-primary bg-orange-50/50 hover:bg-orange-50 p-2 rounded-2xl transition-colors">
                                 <Filter className="w-5 h-5" />
                             </button>
                         </div>
@@ -105,15 +105,15 @@ export const ExpedienteBandeja: React.FC = () => {
                                     <tr
                                         key={c.id}
                                         onClick={() => setSelected(c)}
-                                        className={`hover:bg-indigo-50/50 transition-colors cursor-pointer ${selected?.id === c.id ? 'bg-indigo-50/50 border-l-4 border-l-indigo-600' : 'border-l-4 border-l-transparent'}`}
+                                        className={`hover:bg-orange-50/50/50 transition-colors cursor-pointer ${selected?.id === c.id ? 'bg-orange-50/50/50 border-l-4 border-l-indigo-600' : 'border-l-4 border-l-transparent'}`}
                                     >
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-600 text-sm">
+                                                <div className="w-10 h-10 rounded-2xl bg-surface-light border border-slate-100 flex items-center justify-center font-bold text-slate-600 text-sm">
                                                     {c.name.substring(0, 2).toUpperCase()}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-bold text-slate-800">{c.name}</p>
+                                                    <p className="text-sm font-bold text-brand-secondary">{c.name}</p>
                                                     <p className="text-xs text-slate-400 font-medium">EXP: {c.displayId}</p>
                                                 </div>
                                             </div>
@@ -121,9 +121,9 @@ export const ExpedienteBandeja: React.FC = () => {
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-2">
                                                 <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider
-                                                    ${c.risk === 'ALTO' ? 'bg-red-100 text-red-700' :
-                                                        c.risk === 'MEDIO' ? 'bg-amber-100 text-amber-700' :
-                                                            'bg-emerald-100 text-emerald-700'}`}
+                                                    ${c.risk === 'ALTO' ? 'bg-risk-high/10 text-risk-high' :
+                                                        c.risk === 'MEDIO' ? 'bg-risk-medium/10 text-risk-medium' :
+                                                            'bg-risk-low/10 text-risk-low'}`}
                                                 >
                                                     {c.risk}
                                                 </span>
@@ -132,8 +132,8 @@ export const ExpedienteBandeja: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="w-24 space-y-1.5">
-                                                <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                    <div className={`h-full ${c.status === 'COMPLETADO' ? 'bg-emerald-500' : 'bg-indigo-500'}`} style={{ width: c.status === 'COMPLETADO' ? '100%' : '45%' }}></div>
+                                                <div className="h-1.5 w-full bg-surface-light border border-slate-100 rounded-full overflow-hidden">
+                                                    <div className={`h-full ${c.status === 'COMPLETADO' ? 'bg-emerald-500' : 'bg-brand-primary'}`} style={{ width: c.status === 'COMPLETADO' ? '100%' : '45%' }}></div>
                                                 </div>
                                                 <p className="text-[10px] text-slate-400 font-bold uppercase">{c.status === 'COMPLETADO' ? '100%' : '45%'}</p>
                                             </div>
@@ -144,7 +144,7 @@ export const ExpedienteBandeja: React.FC = () => {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 text-right">
-                                            <button className="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-slate-100 text-slate-400 transition-colors">
+                                            <button className="w-8 h-8 inline-flex items-center justify-center rounded-lg hover:bg-surface-light border border-slate-100 text-slate-400 transition-colors">
                                                 <MoreHorizontal className="w-4 h-4" />
                                             </button>
                                         </td>
@@ -160,8 +160,8 @@ export const ExpedienteBandeja: React.FC = () => {
             {selected && (
                 <div className="xl:col-span-1 border border-slate-200 bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in flex flex-col h-[600px]">
                     <div className="p-6 border-b border-slate-100 bg-slate-800 text-white flex items-center gap-4">
-                        <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center border border-indigo-400/30">
-                            <ShieldCheck className="w-5 h-5 text-indigo-400" />
+                        <div className="w-10 h-10 bg-brand-primary/20 rounded-lg flex items-center justify-center border border-brand-primary/30">
+                            <ShieldCheck className="w-5 h-5 text-brand-primary" />
                         </div>
                         <div>
                             <h3 className="font-bold text-base leading-tight">Auditoría Ley 23</h3>
@@ -175,11 +175,11 @@ export const ExpedienteBandeja: React.FC = () => {
                             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Verificación KYC</h4>
                             <div className="space-y-2">
                                 {['ID / Cédula Vigente', 'Recibo de Utilidad', 'Declaración PEP', 'Beneficiario Final'].map((lbl, idx) => (
-                                    <label key={idx} className="flex items-center gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50 cursor-pointer hover:bg-slate-100 transition-colors">
-                                        <div className={`w-4 h-4 rounded text-white flex items-center justify-center ${idx < 2 || selected.status === 'COMPLETADO' ? 'bg-indigo-600' : 'bg-slate-300'}`}>
+                                    <label key={idx} className="flex items-center gap-3 p-3 rounded-2xl border border-slate-100 bg-slate-50 cursor-pointer hover:bg-surface-light border border-slate-100 transition-colors">
+                                        <div className={`w-4 h-4 rounded text-white flex items-center justify-center ${idx < 2 || selected.status === 'COMPLETADO' ? 'bg-brand-primary' : 'bg-slate-300'}`}>
                                             <Check className="w-3 h-3" />
                                         </div>
-                                        <span className="text-xs font-bold text-slate-700">{lbl}</span>
+                                        <span className="text-xs font-bold text-text-main">{lbl}</span>
                                     </label>
                                 ))}
                             </div>
@@ -188,7 +188,7 @@ export const ExpedienteBandeja: React.FC = () => {
                         {/* Screening Status */}
                         <div>
                             <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Motor OFAC / ONU</h4>
-                            <div className="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center text-center gap-4">
+                            <div className="p-4 rounded-2xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center text-center gap-4">
                                 <div className="flex items-center gap-3">
                                     <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
                                         <Globe className={`w-6 h-6 ${selected.risk === 'ALTO' ? 'text-red-500' : 'text-emerald-500'}`} />
@@ -204,7 +204,7 @@ export const ExpedienteBandeja: React.FC = () => {
                                 <button
                                     onClick={runScreening}
                                     disabled={isScreening}
-                                    className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white text-xs font-bold rounded-lg transition-colors flex justify-center items-center h-9"
+                                    className="w-full py-2 bg-brand-primary hover:bg-indigo-700 disabled:bg-indigo-400 text-white text-xs font-bold rounded-lg transition-colors flex justify-center items-center h-9"
                                 >
                                     {isScreening ? (
                                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
