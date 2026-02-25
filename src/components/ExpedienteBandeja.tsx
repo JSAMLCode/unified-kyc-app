@@ -46,7 +46,7 @@ export const ExpedienteBandeja: React.FC = () => {
         setIsScreening(true);
         try {
             // Configure n8n webhook call for manual screening
-            await fetch('http://localhost:5678/webhook/aml-screening', {
+            await fetch('http://localhost:5678/webhook-test/aml-screening', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
